@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8" />
+    <style>
+      .square {
+        display: block;
+        height: 300px;
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="start-button" style="margin: 50px auto; width: 100px; display: block;">
+      開始囉
+    </button>
+    <h1 id="status" style="text-align: center;">狀態: 還沒開始</h1>
+    <div id="square" class="square" style="background: #FFFF00; margin: 0 auto;">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script>
+    $('#start-button').on('click', function(e) {
+      var squareBlock = $('#square');
+      var statusBlock = $('#status');
+
+      statusBlock.text('狀態: 往下動畫中');
+      squareBlock.animate({
+        marginTop: '300px'
+      }, 2000, function() {
+
+        statusBlock.text('狀態: 往下動畫完成, 往上動畫中');
+        squareBlock.animate({
+          marginTop: '0px',
+        }, 2000, function() {
+
+          statusBlock.text('狀態: 往上動畫完成, 變寬中');
+          squareBlock.animate({
+            width: '600px',
+          }, 2000, function() {
+
+            statusBlock.text('狀態: 變寬動畫完成, 變窄中');
+            squareBlock.animate({
+              height: '25px',
+            }, 2000, function() {
+              statusBlock.text('狀態: 變窄動畫完成');
+            });
+          });
+        });
+      });
+    });
+    </script>
+  </body>
+</html>
